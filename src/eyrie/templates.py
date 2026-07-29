@@ -193,6 +193,8 @@ something durable, add it to the right `docs/domain/` file rather than leaving i
 - Treat `docs/` as persistent memory: consult it for background mid-task, not just at
   the start. Prefer updating a `docs/` file over letting knowledge evaporate into chat.
 - When you learn something durable, add it to the right `docs/domain/` file.
+- If a `docs/domain/` entry is a blank skeleton, fill it in from the linked source
+  before moving on.
 - For cross-source work, follow the pattern in `docs/meta/workflow.md`: plan here,
   execute in the source, note results back in the topic doc.
 - `output/` is for versioned deliverables sent to others — frozen when sent, never

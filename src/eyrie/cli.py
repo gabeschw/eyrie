@@ -5,6 +5,7 @@ from pathlib import Path
 import click
 
 from eyrie.init import create_scaffold
+from eyrie.sync import find_eyrie_root, load_config, sync_docs, sync_links, sync_skills
 
 
 @click.group()
@@ -34,4 +35,11 @@ def init(name: str) -> None:
 @main.command()
 def sync() -> None:
     """Sync links and skills from eyrie.toml."""
-    click.echo("Syncing...")
+    root = find_eyrie_root()
+    config = load_config(root)
+    click.echo("Syncing links...")
+    sync_links(root, config)
+    click.echo("Syncing docs...")
+    sync_docs(root, config)
+    click.echo("Syncing skills...")
+    sync_skills(root, config)
