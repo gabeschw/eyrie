@@ -6,7 +6,6 @@ from pathlib import Path
 
 from eyrie import templates
 
-
 PRE_COMMIT_HOOK = """\
 #!/bin/sh
 ROOT=$(git rev-parse --show-toplevel)

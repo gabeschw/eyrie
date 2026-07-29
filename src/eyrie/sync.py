@@ -173,6 +173,7 @@ def sync_skills(root: Path, config: dict) -> None:
             cwd=root,
             capture_output=True,
             text=True,
+            check=False,
         )
         if result.returncode != 0:
             click.echo(f"  WARNING — failed to install {skill}: {result.stderr.strip()}")

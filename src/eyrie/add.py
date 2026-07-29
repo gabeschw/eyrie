@@ -16,7 +16,6 @@ def add_source(
 ) -> str:
     """Add a source entry to eyrie.toml. Returns the resolved name."""
     toml_path = root / "eyrie.toml"
-    config_text = toml_path.read_text()
 
     # Parse to validate and check for duplicates
     with open(toml_path, "rb") as f:
