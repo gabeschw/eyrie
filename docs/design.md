@@ -13,7 +13,8 @@
 | `eyrie sync` — symlink materialization | Done |
 | `eyrie sync` — append-only docs updates | Done |
 | `eyrie sync` — skill installation (`npx skills`) | Done |
-| PyPI publishing | Not started |
+| `eyrie add` — add source with auto-sync | Done |
+| PyPI publishing | Done |
 | MCP server config generation | Out of scope (v1) |
 | Windows support | Out of scope (v1) |
 | Cursor `.cursor/rules/` bridge | Out of scope (v1) |
@@ -239,6 +240,7 @@ symlink means Claude Code picks them up automatically.
 | Command | Description |
 |---------|-------------|
 | `eyrie init <name>` | Create scaffold, ask one question, install git hook, write agent permission rules |
+| `eyrie add <path>` | Add a source to `eyrie.toml` and auto-sync (infers type, supports `--skill`, `--name`, `--type remote`) |
 | `eyrie sync` | Materialize/re-link `links/` from `eyrie.toml` + install/update skills via `npx skills` |
 
 ## Agent platform support

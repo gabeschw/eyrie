@@ -7,17 +7,20 @@ workspaces with read-only symlinked sources, curated docs, and multi-agent-platf
 
 ```sh
 uv run eyrie init <name>   # scaffold a new eyrie repo
-uv run eyrie sync          # materialize symlinks + install skills (WIP)
+uv run eyrie add <path>    # add a source and auto-sync
+uv run eyrie sync          # materialize symlinks + install skills (idempotent)
 uv run pytest              # run tests
 uv run pytest tests/test_init.py::TestAgentsMd::test_contains_name  # single test
 ```
 
 ## Architecture
 
-- `src/eyrie/cli.py` — click CLI entry point (`main` group, `init` and `sync` commands)
+- `src/eyrie/cli.py` — click CLI entry point (`main` group, `init`, `add`, and `sync` commands)
 - `src/eyrie/init.py` — scaffold generation logic (`create_scaffold`)
+- `src/eyrie/add.py` — add source to eyrie.toml (`add_source`)
+- `src/eyrie/sync.py` — sync logic (links, docs, skills)
 - `src/eyrie/templates.py` — all template content as string constants
-- `tests/test_init.py` — tests use `click.testing.CliRunner` with the `main` group
+- `tests/test_init.py`, `tests/test_sync.py`, `tests/test_add.py` — tests use `click.testing.CliRunner`
 
 ## Conventions
 
