@@ -169,7 +169,7 @@ def sync_skills(root: Path, config: dict) -> None:
     for skill in unique_skills:
         click.echo(f"  Installing: {skill}")
         result = subprocess.run(
-            ["npx", "skills", "add", skill],
+            ["npx", "skills", "add", skill, "--yes"],
             cwd=root,
             capture_output=True,
             text=True,
