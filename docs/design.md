@@ -2,6 +2,22 @@
 
 *Living doc. Started 2026-07-29. Update as decisions are made.*
 
+## Implementation status
+
+| Feature | Status |
+|---------|--------|
+| `eyrie init` — scaffold generation | Done |
+| `eyrie init` — git init + pre-commit hook | Done |
+| `eyrie init` — agent permission rules | Done |
+| `eyrie init` — `uv init --no-package` | Done |
+| `eyrie sync` — symlink materialization | Done |
+| `eyrie sync` — append-only docs updates | Done |
+| `eyrie sync` — skill installation (`npx skills`) | Done |
+| PyPI publishing | Not started |
+| MCP server config generation | Out of scope (v1) |
+| Windows support | Out of scope (v1) |
+| Cursor `.cursor/rules/` bridge | Out of scope (v1) |
+
 ## What is Eyrie
 
 A CLI tool and scaffold that generalizes the shekel-kb pattern: an **agent control eyrie**
@@ -218,7 +234,7 @@ Node installation produces a clear warning but does not block eyrie creation.
 Skills are installed into `.agents/skills/` (the canonical location). The `.claude/skills`
 symlink means Claude Code picks them up automatically.
 
-## CLI commands (planned)
+## CLI commands (implemented)
 
 | Command | Description |
 |---------|-------------|
