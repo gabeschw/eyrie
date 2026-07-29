@@ -141,66 +141,54 @@ def agents_md(name: str, description: str) -> str:
     return f"""\
 # AGENTS.md
 
-This is **{name}**. {description}
+This is **{name}**, an eyrie — a meta-repo with symlinks (`links/`) to real sources and curated `docs/` about them. It holds almost no code of its own.
 
-This eyrie holds almost no content of its own. Its value is the **`links/`** tree
-(symlinks to the real sources) plus the curated **`docs/`** that describe them.
+{description}
 
 ## `links/` is READ-ONLY
 
-Everything under `links/` is **read-only**. Read it freely; **never create, edit, move,
-or delete anything inside `links/`**. When a task seems to need a change under `links/`,
-propose it and ask first.
+Never create, edit, move, or delete anything inside `links/`. It is git-ignored (machine-local symlinks). If a task needs a change there, propose it and ask first.
 
-`links/` is git-ignored (machine-local symlinks). Do the eyrie's own writing — docs,
-notes, reports — in this repo's tracked files, outside `links/`.
+Both `opencode.json` and `.claude/settings.json` enforce this — edits and destructive bash under `links/**` are denied.
 
 ## Layout
 
 ```
 {name}/
-├── AGENTS.md          ← you are here
-├── CLAUDE.md          ← points here
 ├── docs/
-│   ├── domain/        ← stable reference: see architecture.md, repos.md, sources.md
-│   ├── meta/          ← about this eyrie: see workflow.md
-│   └── topics/        ← active cross-source investigations
-├── output/            ← versioned deliverables, date-prefixed (YYYY-MM-DD-name)
-├── scripts/           ← eyrie-specific automation (uv run scripts/foo.py)
-├── scratch/           ← ephemeral work, git-ignored
-└── links/             ← READ-ONLY symlinks (git-ignored)
-    ├── repos/         ← see docs/domain/repos.md
-    └── sources/       ← see docs/domain/sources.md
+│   ├── domain/
+│   │   ├── architecture.md  ← how sources fit together
+│   │   ├── repos.md         ← one entry per linked repo
+│   │   ├── sources.md       ← one entry per linked source
+│   │   ├── glossary.md      ← domain terms
+│   │   └── access.md        ← credentials and CLI access for remote sources
+│   ├── meta/
+│   │   └── workflow.md      ← plan-here-execute-there pattern
+│   └── topics/              ← active cross-source investigations
+├── links/                   ← READ-ONLY symlinks (git-ignored)
+│   ├── repos/
+│   └── sources/
+├── output/                  ← frozen deliverables, date-prefixed (YYYY-MM-DD-name)
+├── scripts/                 ← eyrie automation (uv run scripts/foo.py)
+└── scratch/                 ← ephemeral work, git-ignored
 ```
 
-## Where to look first
+`docs/` is split by lifecycle: `domain/` changes rarely (stable facts about your sources); `topics/` is active and evolving — resolved or archived once settled; `meta/` describes how the eyrie itself works.
 
-- **"How does X work / how do these connect?"** → `docs/domain/architecture.md`, then
-  `docs/domain/repos.md` or `docs/domain/sources.md` for the relevant source.
-- **"What is <term>?"** → `docs/domain/glossary.md`.
-- **"How do I access <remote source>?"** → `docs/domain/access.md`.
-- **Active cross-source questions and plans** → `docs/topics/` — one file per investigation.
-- **Workflow and conventions** → `docs/meta/workflow.md` — read this before planning
-  any cross-source work.
+Where to look:
+- "How does X work / how do these connect?" → `docs/domain/architecture.md`
+- "What is <term>?" → `docs/domain/glossary.md`
+- "How do I access <remote system>?" → `docs/domain/access.md`
+- Details on a specific source → `docs/domain/repos.md` or `docs/domain/sources.md`
+- Active plans and investigations → `docs/topics/`
 
-`docs/` is split by **lifecycle**, not just topic: `domain/` is stable reference about
-your sources and domain (changes rarely); `meta/` is about this eyrie as a tool; `topics/`
-is active, evolving investigations — resolved or archived once settled. When you learn
-something durable, add it to the right `docs/domain/` file rather than leaving it in chat.
+## How to work
 
-## Working conventions
-
-- Treat `docs/` as persistent memory: consult it for background mid-task, not just at
-  the start. Prefer updating a `docs/` file over letting knowledge evaporate into chat.
-- When you learn something durable, add it to the right `docs/domain/` file.
-- If a `docs/domain/` entry is a blank skeleton, fill it in from the linked source
-  before moving on.
-- For cross-source work, follow the pattern in `docs/meta/workflow.md`: plan here,
-  execute in the source, note results back in the topic doc.
-- `output/` is for versioned deliverables sent to others — frozen when sent, never
-  treat as current state. Use date-prefix filenames (YYYY-MM-DD-name).
-- Facts in these docs reflect a point in time. Verify against live sources before
-  acting on specifics — docs describe the shape of things; live sources hold current state.
+- **Plan here, execute in the source.** The eyrie cannot run, test, or lint code in linked repos — only read it. Work out what to change and in what order, then make the change in the source directly. See `docs/meta/workflow.md` for the full pattern.
+- **Treat `docs/` as persistent memory.** Consult it mid-task. When you learn something durable, update `docs/domain/` rather than letting knowledge evaporate.
+- **All domain docs are stubs.** If you encounter a source or term that lacks an entry, fill it in.
+- **`output/` is frozen on delivery.** Date-prefix filenames (`YYYY-MM-DD-name`). Never treat as current state.
+- **When docs conflict with live sources, trust the source.** Docs describe the shape of things; live sources hold current state.
 """
 
 

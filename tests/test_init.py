@@ -69,6 +69,10 @@ class TestAgentsMd:
         content = (eyrie_repo / "AGENTS.md").read_text()
         assert "READ-ONLY" in content
 
+    def test_explains_what_eyrie_is(self, eyrie_repo):
+        content = (eyrie_repo / "AGENTS.md").read_text()
+        assert "meta-repo" in content
+
 
 class TestEyrieToml:
     def test_contains_name_and_description(self, eyrie_repo):
