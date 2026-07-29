@@ -33,7 +33,17 @@ agent permission rules for OpenCode and Claude Code.
 
 ### Add sources
 
-Edit `eyrie.toml`:
+```sh
+eyrie add ~/Projects/resume-cv
+eyrie add ~/Documents/ObsidianVaults/Career --skill "vercel-labs/agent-skills/obsidian-cli"
+eyrie add --type remote --name jira --description "Team Jira (team.atlassian.net)"
+```
+
+Type is inferred (`repo` if `.git/` exists, else `folder`), name defaults to the
+directory basename, and paths under `$HOME` are stored as `~/...` in `eyrie.toml`.
+Each `add` auto-syncs (creates symlinks, appends doc skeletons, installs skills).
+
+You can also edit `eyrie.toml` directly:
 
 ```toml
 [[sources]]
