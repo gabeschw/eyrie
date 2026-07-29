@@ -36,7 +36,7 @@ agent permission rules for OpenCode and Claude Code.
 ```sh
 eyrie add ~/Projects/resume-cv
 eyrie add ~/Documents/ObsidianVaults/Career --skill "vercel-labs/agent-skills/obsidian-cli"
-eyrie add --type remote --name jira --description "Team Jira (team.atlassian.net)"
+eyrie add --type remote --name jira --description "Team Jira (team.atlassian.net)" --skill "https://github.com/onnokh/atlassian-cli"
 ```
 
 Type is inferred (`repo` if `.git/` exists, else `folder`), name defaults to the
@@ -61,6 +61,7 @@ skills = ["vercel-labs/agent-skills/obsidian-cli"]
 name = "jira"
 type = "remote"
 description = "Team Jira (team.atlassian.net)"
+skills = ["https://github.com/onnokh/atlassian-cli"]
 ```
 
 ### Sync
